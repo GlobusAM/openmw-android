@@ -27,6 +27,8 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.RelativeLayout
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 
 import ui.controls.Osc
 import ui.controls.OscElement
@@ -37,6 +39,8 @@ import utils.Utils.hideAndroidControls
 class ConfigureCallback(activity: Activity) : View.OnTouchListener {
 
     var currentView: View? = null
+    var currentBackground: Drawable? = null
+
     private var layout: RelativeLayout = activity.findViewById(R.id.controlsContainer)
     private var origX: Float = 0.0f
     private var origY: Float = 0.0f
@@ -46,9 +50,22 @@ class ConfigureCallback(activity: Activity) : View.OnTouchListener {
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
-                currentView?.setBackgroundColor(Color.TRANSPARENT)
+                currentView?.setBackground(currentBackground)
+
+                val gradientBackground = v.getBackground() as? GradientDrawable
+                currentBackground = v.getBackground()
                 currentView = v
-                v.setBackgroundColor(Color.RED)
+
+                if(gradientBackground != null) {
+                    val backgroundRadius = gradientBackground.getCornerRadius()
+                    val shape = GradientDrawable()
+                    shape.setColor(Color.RED)
+                    shape.setCornerRadius(backgroundRadius)
+                    v.setBackground(shape)
+                }
+                else
+                    v.setBackgroundColor(Color.RED)
+
                 origX = v.x
                 origY = v.y
                 startX = event.rawX
@@ -63,6 +80,10 @@ class ConfigureCallback(activity: Activity) : View.OnTouchListener {
                 el.changePosition(x * VIRTUAL_SCREEN_WIDTH / layout.width, y * VIRTUAL_SCREEN_HEIGHT / layout.height)
                 el.updateView()
             }
+
+ //           MotionEvent.ACTION_UP -> {
+ //               v.setBackground(currentBackground)
+ //           }
         }
 
         return true
