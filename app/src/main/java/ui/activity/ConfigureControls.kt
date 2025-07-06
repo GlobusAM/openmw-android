@@ -80,15 +80,10 @@ class ConfigureCallback(activity: Activity) : View.OnTouchListener {
                 el.changePosition(x * VIRTUAL_SCREEN_WIDTH / layout.width, y * VIRTUAL_SCREEN_HEIGHT / layout.height)
                 el.updateView()
             }
-
- //           MotionEvent.ACTION_UP -> {
- //               v.setBackground(currentBackground)
- //           }
         }
 
         return true
     }
-
 }
 
 class ConfigureControls : Activity() {

@@ -443,10 +443,10 @@ class Osc {
         // create controls.cfg
         if (!File(Constants.USER_FILE_STORAGE + "/launcher/controls.cfg").exists()) {
             File(Constants.USER_FILE_STORAGE + "/launcher/controls.cfg").writeText(
-"//syntax: Key or keycode; button text or image to load; default x; default y; visibility\nKey can be single string as w s a d etc or android keycode\nList of android keycodes www.temblast.com/ref/akeyscode.htm\nIcons are loaded from icons folder, icon names cant contain spaces, if not found it use simple button with specified text\nDefault x and default y specify default position of added button in 1024x728 grid, can be changed in app later\nVisibility 0 mean button is not visible in menus, 1 means always visible\nDefault button size original is 70\nDefault button alpha original is 0.4\nTogglable specify if button is togglable, press once to activate, deactivate on second press\n\n")
+"//syntax: Key or keycode; button text or image to load; default x; default y; visibility; default size; default alpha; togglable; rounding\n\nKey can be single string as w s a d etc or android keycode\nList of android keycodes www.temblast.com/ref/akeyscode.htm\nIcons are loaded from icons folder, icon names cant contain spaces, if not found it use simple button with specified text\nDefault x and default y specify default position of added button in 1024x728 grid, can be changed in app later\nVisibility 0 mean button is not visible in menus, 1 means always visible\nDefault button size original is 70\nDefault button alpha original is 0.4\nTogglable specify if button is togglable, press once to activate, deactivate on second press\n Rounding specify rounding of corners for simple buttons 0.0 = square 100.0 = circle\n")
 
             File(Constants.USER_FILE_STORAGE + "/launcher/controls-example.cfg").writeText(
-"w;forward;100;200;0\ns;backward.png;200;200;0\n67;delete;300;200;1")
+"p; phys ;682; 100; 0; 70; 0.4; 1; 25.0\nb; block; 382; 100; 0; 70; 0.4; 1; 50.0\nr; run; 382; 300; 0; 70; 0.4; 0; 100.0")
         }
 
         val mKeyCharacterMap = KeyCharacterMap.load(KeyCharacterMap.VIRTUAL_KEYBOARD)

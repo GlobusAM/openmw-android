@@ -90,7 +90,6 @@ class ButtonTouchListener(private val keyCode: Int, private val needEmulateMouse
                     toggled = true
                 }
                 else {
-
                     v.setBackground(currentBackground)
 
                     eventMovement(Movement.KEY_UP)
@@ -99,9 +98,8 @@ class ButtonTouchListener(private val keyCode: Int, private val needEmulateMouse
             }
             else
                 eventMovement(Movement.KEY_DOWN)
-        } else {
+        } else
             eventMovement(Movement.MOUSE_DOWN)
-        }
     }
 
     private fun onTouchUp() {
@@ -277,12 +275,10 @@ class QuickKeysButtonTouchListener(ctx: Context, private val buttons: ArrayList<
                 if (Math.abs(event.x - pivot) > pivot || Math.abs(event.y - pivot) > pivot)
                     button.view?.setBackground(highlightedBackground)
             }
-
         }
 
         return true
     }
-
 }
 
 
